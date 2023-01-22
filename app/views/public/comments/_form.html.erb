@@ -1,0 +1,11 @@
+<%= form_with model: [@movie, @comment], url: public_movie_comments_path(@movie), method: :post, local: false do |f| %>
+<%= f.text_area :comment, placeholder: "コメントをここに　※ネタバレ注意",size: "30x3" %>
+  <tr><%= f.submit "コメント送信する", class: 'btn btn-info' %></tr>
+<% end %>
+<p class="bg-light text-dark"><storng>ユーザーの皆さまが自由にレビューを書き、いい作品と</br>
+出会える世界観を尊重しております。</br>
+コメントをする際は、相手の誹謗中傷やレビュー投稿の</br>
+妨げになるような内容を含むことがないようご配慮を</br>
+お願いいたします。</br>
+内容によっては管理者の判断で、Genre Horrorの利用を</br>
+停止させていただく場合がございます。</storng></p>

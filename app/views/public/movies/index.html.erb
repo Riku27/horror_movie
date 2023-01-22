@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row py-4">
+    <div clsss="offset-1">
+      <h1>投稿映画一覧</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <h4><strong><i class="fas fa-ghost"></i><%= @genre.name %>映画</strong><i class="fas fa-ghost"></i></h4>
+        <table class="table table-hover table-inverse">
+        <tr>
+          <th>タイトル</th>
+          <th>監督</th>
+          <th>面白さ</th>
+          <th>怖さ</th>
+          <th>投稿ユーザー</th>
+          <th>投稿日</th>
+          <th>コメント数</th>
+        </tr>
+        <tbody>
+          <% @movies.each do |movie| %>
+          <tr>
+            <td><%= link_to movie.title, public_movie_path(movie.id) %></td>
+            <td><%= movie.director %></td>
+            <td><%= movie.rate %></td>
+            <td><%= movie.rate_horror %></td>
+            <td><%= movie.user.name %></td>
+            <td><%= movie.created_at.strftime("%Y-%m-%d") %></td>
+            <td><%= movie.comments.count %>コメント</td>
+          </tr>
+          <% end %>
+        </tbody>
+        </table>
+        <div class="d-flex justify-content-center"><%= paginate @movies %></div>
+    </div>
+  </div>
+</div>

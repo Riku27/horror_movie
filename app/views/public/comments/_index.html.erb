@@ -1,0 +1,24 @@
+<table class="table table-hover table-inverse">
+  <thead>
+    <p class="p-3 mb-2 bg-dark text-white"><i class="fas fa-book-dead"></i>コメント一覧<i class="fas fa-book-dead"></i></p>
+      <tr>
+        <th>ユーザー名</th>
+        <th>コメント投稿日</th>
+        <th>コメント内容</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% movie.comments.each do |comment| %>
+        <tr>
+          <td><%= comment.user.name %></td>
+          <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+          <td><%= comment.comment %></td>
+          <td><% if comment.user == current_user %>
+              <%= link_to "削除", public_movie_comment_path(comment.movie, comment), method: :delete, remote: true, class: 'btn btn-danger' %>
+              <% end %>
+          </td>
+        </tr>
+      <% end %>
+  </table>
+</tbody>

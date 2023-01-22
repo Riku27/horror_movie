@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row py-4">
+    <div clsss="offset-1">
+      <h1>ホラージャンル編集</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <%= form_with model: @genre,url: admin_genre_path(@genre.id),method: :patch do |f| %>
+      <div class="form-group row">
+        <%= f.label :name, "ジャンル名", :class => "col-md-2 col-form-label" %>
+        <%= f.text_field :name, :class => "form-control col-md-3" %>
+        <%= f.submit '変更を保存', class: 'btn btn-success ml-5' %>
+      </div>
+    <% end %>
+</div>
+

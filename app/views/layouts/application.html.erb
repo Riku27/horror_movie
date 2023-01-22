@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HorrorMovie</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class= "navbar navbar-expand-lg navbar-light" style= "background-color: black">
+        <div class= "container">
+          <%= link_to root_path, class: "navbar-brand p-3, btn btn-light" do %>
+            <i class="fas fa-film"></i>
+            ジャンル一覧
+          <% end %>
+          <div>
+            <ul class= "navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <p><font color="red">
+                  <%= current_user.name %>,
+                  Welcome to World of Horror
+                  </font>
+                </p>
+                <li class= "nav-item pl-3">
+                  <%= link_to public_my_page_path, class: 'nav-link text-dark' do %>
+                    <button type= "button" class= "btn btn-light"><i class="fas fa-user-tie"></i>マイページ</button>
+                  <% end %>
+                </li>
+                <li class= "nav-item pl-3">
+                  <%= link_to about_path, class: 'nav-link text-dark' do %>
+                    <button type= "button" class= "btn btn-light"><i class="fas fa-question-circle"></i>About</button>
+                  <% end %>
+                </li>
+                <li class= "nav-item pl-3">
+                  <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %>
+                    <button type= "button" class= "btn btn-light"><i class="fas fa-sign-out-alt"></i>ログアウト</button>
+                  <% end %>
+                </li>
+
+              <% elsif admin_signed_in? %>
+                <li class= "nav-item pl-3">
+                  <%= link_to admin_movies_path, class: 'nav-link text-dark' do %>
+                    <button type= "button" class= "btn btn-light"><i class="far fa-file-video"></i>映画一覧</button>
+                  <% end %>
+                </li>
+                <li class= "nav-item pl-3">
+                  <%= link_to admin_genres_path, class: 'nav-link text-dark' do %>
+                  <button type= "button" class= "btn btn-light"><i class="fab fa-optin-monster"></i>ジャンル一覧</button>
+                <% end %>
+                </li>
+                <li class= "nav-item pl-3">
+                  <%= link_to admin_users_path, class: 'nav-link text-dark' do %>
+                    <button type= "button" class= "btn btn-light"><i class="fas fa-users"></i>会員一覧</button>
+                  <% end %>
+                </li>
+                <li class= "nav-item pl-3">
+                  <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
+                    <button type= "button" class= "btn btn-light"><i class="fas fa-sign-out-alt"></i>ログアウト</button>
+                  <% end %>
+                </li>
+
+              <% else %>
+                <li class= "nav-item pl-3">
+                  <%= link_to about_path, class: 'nav-link text-dark' do %>
+                    <button type= "button" class= "btn btn-light"><i class="fas fa-question-circle"></i>About</button>
+                  <% end %>
+                </li>
+                <li class= "nav-item pl-3">
+                  <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
+                    <button type= "button" class= "btn btn-light"><i class="fas fa-user-plus"></i>新規登録</button>
+                  <% end %>
+                </li>
+                <li class= "nav-item pl-3">
+                  <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
+                    <button type= "button" class= "btn btn-light"><i class="fas fa-sign-in-alt"></i>ログイン</button>
+                  <% end %>
+                </li>
+              <% end %>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <%= yield %>
+    <footer class="bottom: 0">
+      <nav class= "navbar navbar-expand-lg navbar-light" style= "background-color: black">
+        <p class="px-5 mx-auto text-danger">
+          How much fear do you know?
+        </p>
+      </nav>
+    </footer>
+  </body>
+  
+</html>

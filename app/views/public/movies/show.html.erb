@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row py-4">
+    <div clsss="offset-1">
+      <h1>映画詳細</h1>
+    </div>
+  </div>
+</div>
+
+<% if @comment.errors.any? %>
+  <%= @comment.errors.count %> error has occurred
+  <ul>
+    <% @comment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="container">
+  <div class="row m-3">
+    <div class="col-md-5">
+      <table class="table">
+         <tbody>
+           <p>投稿ユーザー：<%= @movie.user.name %></p>
+          <tr>
+            <td>タイトル</td>
+            <td><%= @movie.title %></td>
+          </tr>
+          <tr>
+            <td>ジャンル</td>
+            <td><%= @movie.genre.name %></td>
+          </tr>
+          <tr>
+            <td>監督</td>
+            <td><%= @movie.director %></td>
+          </tr>
+          <tr>
+            <td>鑑賞方法</td>
+            <td><%= @movie.watch %></td>
+          </tr>
+          <tr>
+            <td>面白さ</td>
+            <td><%= @movie.rate %></td>
+          </tr>
+            <td>怖さ</td>
+            <td><%= @movie.rate_horror %></td>
+          <tr>
+            <td>鑑賞日</td>
+            <td><%= @movie.year %></td>
+          </tr>
+          </tbody>
+      </table>
+          <div class="new-comment">
+            <%= render partial: 'public/comments/form' %>
+          </div>
+    </div>
+          <div class="col-md-7">
+            <div id="comments-area"><%= render partial: 'public/comments/index', locals: {movie: @movie} %></div>
+            <div class="d-flex justify-content-center"><%= paginate @comments %></div>
+          </div>
+  </div>
+</div>
