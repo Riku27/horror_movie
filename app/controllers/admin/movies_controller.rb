@@ -1,10 +1,9 @@
 class Admin::MoviesController < ApplicationController
+  
   def index
+    @movies = Movie.page(params[:page]).order(created_at: :desc)
   end
 
-  def show
-  end
-  
   def destroy
     @movie = Movie.find(params[:id])
     @movie.delete

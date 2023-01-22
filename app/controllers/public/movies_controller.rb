@@ -31,11 +31,11 @@ before_action :authenticate_user!
       @movies = @genre.movie.page(params[:page]).horror_count
     end
     else
-      @movies = Movie.page(params[:page]).order(crated_at: :desc)
+      @movies = Movie.page(params[:page]).order(created_at: :desc)
       @genres = Genre.all
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
-      @movies = @genre.movie.page(params[:page]).order(crated_at: :desc)
+      @movies = @genre.movie.page(params[:page]).order(created_at: :desc)
     end
     end
   end

@@ -5,3 +5,37 @@
     </div>
   </div>
 </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover table-inverse">
+        <tr>
+          <th>タイトル</th>
+          <th>ジャンル</th>
+          <th>監督</th>
+          <th>面白さ</th>
+          <th>怖さ</th>
+          <th>投稿ユーザー</th>
+          <th>投稿日</th>
+          <th>コメント数</th>
+        </tr>
+        <tbody>
+          <% @movies.each do |movie| %>
+          <tr>
+            <td><%= movie.title %></td>
+            <td><%= movie.genre.name %></td>
+            <td><%= movie.director %></td>
+            <td><%= movie.rate %></td>
+            <td><%= movie.rate_horror %></td>
+            <td><%= movie.user.name %></td>
+            <td><%= movie.created_at.strftime("%Y-%m-%d") %></td>
+            <td><%= movie.comments.count %>コメント</td>
+          </tr>
+          <% end %>
+        </tbody>
+        </table>
+        <div class="d-flex justify-content-center"><%= paginate @movies %></div>
+    </div>
+  </div>
+</div>
