@@ -1,2 +1,41 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class="container">
+  <div class="row py-4">
+    <div clsss="offset-1">
+      <h4><strong><%= @user.name %></strong>さんの会員ステータス変更</h4>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mt-10 pt-5">
+    <div class="col-text-center">
+      <tr><%= image_tag @user.get_profile_image, size:"100x100" %></tr>
+        <th>会員ID</th>
+        <tr>
+          <td><%= @user.id %></td>
+        </tr>
+        <th>ユーザー名</th>
+        <tr>
+          <td><%= @user.name %></td>
+        </tr>
+      　<th>メールアドレス</th>
+        <tr>
+          <td><%= @user.email %></th>
+        </tr>
+      <div class="form-group">
+          <%= form_with model: [:admin, @user] do |f| %>
+          <div class= "col-md-3">
+          会員ステータス
+          </div>
+          <div class= "col-md-3">
+          <%= f.radio_button :is_deleted, :false %>
+          <%= f.label :is_deleted_true, "有効" %>
+          <%= f.radio_button :is_deleted, :true %>
+          <%= f.label :is_deleted_false, "退会" %>
+          </div>
+          <%= f.submit '変更を保存', class: 'btn btn-success' %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,16 +11,20 @@
     <div class= "col-md-3">
       <table>
         <tr><%= image_tag @user.get_profile_image, size:"100x100" %></tr>
-        <tr>
-          <th>ユーザー名</th>
-          <th><%= @user.name %></th>
-        </tr>
-      　<tr>
-      　   <th>メールアドレス</th>
-      　   <th><%= @user.email %></th>
-        </tr>
-        <td><%= link_to "編集する", public_information_edit_path, class: "btn btn-success" %></td>
-        <td><%= link_to "映画新規登録", new_public_movie_path, class: "btn btn-info" %></td>
+           <th>ユーザー名</th>
+             <tr>
+               <td><%= @user.name %></td>
+             </tr>
+      　    <th>メールアドレス</th>
+      　      <tr>
+           　   <td><%= @user.email %></th>
+             </tr>
+             <tr>
+               <td><%= link_to "編集する", public_information_edit_path, class: "btn btn-success" %></td>
+             </tr>
+             <tr>
+               <td><%= link_to "映画新規投稿", new_public_movie_path, class: "btn btn-info" %></td>
+             </tr>
       </table>
     </div>
     <div class= "col-md-9">
@@ -42,18 +46,13 @@
           <td><%= movie.genre.name %></td>
           <td><%= movie.year %></td>
           <td>
-
             <%= link_to '編集する', edit_public_movie_path(movie.id), class: 'btn btn-primary' %>
-
           </td>
           <td>
-
             <%= link_to '削除する', public_movie_path(movie.id), method: :delete,
                "data-confirm" => "本当に消しますか？", class: 'btn btn-sm btn-danger' %>
-
           </td>
-        </tr>
-
+         </tr>
         <% end %>
       </tbody>
       </table>

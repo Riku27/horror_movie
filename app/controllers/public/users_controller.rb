@@ -26,10 +26,20 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  def unsubscribe
+  end
+
+  def withdraw
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会が完了しました。"
+    redirect_to root_path
+  end
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :profile_image)
+    params.require(:user).permit(:name, :email, :profile_image, :is_deleted)
   end
 
   #def is_matching_login_user

@@ -16,6 +16,7 @@
             <th>ユーザー名</th>
             <th>投稿映画本数</th>
             <th>投稿コメント数</th>
+            <th>会員ステータス</th>
           </tr>
         <tbody>
           <% @users.each do |user| %>
@@ -25,6 +26,10 @@
             <td><%= link_to user.name, admin_user_path(user.id) %></td>
             <td><%= user.movies.count %>タイトル</td>
             <td><%= user.comments.count %>コメント</td>
+            <td><% if user.is_deleted == true %>退会
+      　         <% else user.is_deleted == false %>有効
+      　         <% end %>
+      　     </td>
           </tr>
           <% end %>
         </tbody>
