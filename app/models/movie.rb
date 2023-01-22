@@ -9,4 +9,9 @@ class Movie < ApplicationRecord
   validates :watch, presence: true
   validates :rate, presence: true
   validates :rate_horror, presence: true
+  
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :star_count, -> {order(rate: :desc)}
+  scope :horror_count, -> {order(rate_horror: :desc)}
 end

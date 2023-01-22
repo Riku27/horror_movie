@@ -2,17 +2,47 @@ class Public::MoviesController < ApplicationController
 before_action :authenticate_user!
 
   def index
-    @movies = Movie.page(params[:page]).order(created_at: :desc)
-    @genres = Genre.all
+    if params[:latest]
+      @movies = Movie.page(params[:page]).latest
+      @genres = Genre.all
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
-      @movies = @genre.movie.page(params[:page]).order(created_at: :desc)
+      @movies = @genre.movie.page(params[:page]).latest
+    end
+    elsif params[:old]
+      @movies = Movie.page(params[:page]).old
+      @genres = Genre.all
+    if params[:genre_id].present?
+      @genre = Genre.find(params[:genre_id])
+      @movies = @genre.movie.page(params[:page]).old
+    end
+    elsif params[:star_count]
+      @movies = Movie.page(params[:page]).star_count
+      @genres = Genre.all
+    if params[:genre_id].present?
+      @genre = Genre.find(params[:genre_id])
+      @movies = @genre.movie.page(params[:page]).star_count
+    end
+    elsif params[:horror_count]
+      @movies = Movie.page(params[:page]).horror_count
+      @genres = Genre.all
+    if params[:genre_id].present?
+      @genre = Genre.find(params[:genre_id])
+      @movies = @genre.movie.page(params[:page]).horror_count
+    end
+    else
+      @movies = Movie.page(params[:page]).order(crated_at: :desc)
+      @genres = Genre.all
+    if params[:genre_id].present?
+      @genre = Genre.find(params[:genre_id])
+      @movies = @genre.movie.page(params[:page]).order(crated_at: :desc)
+    end
     end
   end
 
   def show
-    @comments = Comment.page(params[:page])
     @movie = Movie.find(params[:id])
+    @comments = @movie.comments.page(params[:page])
     @comment = Comment.new
   end
 

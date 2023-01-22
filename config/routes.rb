@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :movies, only: [:index, :show, :new, :edit, :create, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
 
+
   end
     resource :users,only: []
     get '/my_page' => 'users#show'

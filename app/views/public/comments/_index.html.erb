@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <% movie.comments.each do |comment| %>
+      <% comments.each do |comment| %>
         <tr>
           <td><%= comment.user.name %></td>
           <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
