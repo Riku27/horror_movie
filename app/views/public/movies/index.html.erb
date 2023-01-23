@@ -31,7 +31,8 @@
             <td><%= movie.director %></td>
             <td><%= movie.rate %></td>
             <td><%= movie.rate_horror %></td>
-            <td><%= movie.user.name %></td>
+            <td><%= image_tag movie.user.get_profile_image, size:"40x40" %>
+            <%= movie.user.name %></td>
             <td><%= movie.created_at.strftime("%Y-%m-%d") %></td>
             <td><%= movie.comments.count %>コメント</td>
           </tr>

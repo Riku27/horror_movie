@@ -75,5 +75,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.web_console.allowed_ips = '123.222.103.5'
   config.hosts.clear
-
+   host = 'samplehost'
+  Rails.application.routes.default_url_options[:host] = host
 end
