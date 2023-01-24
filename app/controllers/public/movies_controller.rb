@@ -3,39 +3,39 @@ before_action :authenticate_user!
 
   def index
     if params[:latest]
-      @movies = Movie.page(params[:page]).latest
+      @movies = Movie.page(params[:page]).latest.per(8)
       @genres = Genre.all
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
-      @movies = @genre.movie.page(params[:page]).latest
+      @movies = @genre.movie.page(params[:page]).latest.per(8)
     end
     elsif params[:old]
-      @movies = Movie.page(params[:page]).old
+      @movies = Movie.page(params[:page]).old.per(8)
       @genres = Genre.all
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
-      @movies = @genre.movie.page(params[:page]).old
+      @movies = @genre.movie.page(params[:page]).old.per(8)
     end
     elsif params[:star_count]
-      @movies = Movie.page(params[:page]).star_count
+      @movies = Movie.page(params[:page]).star_count.per(8)
       @genres = Genre.all
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
-      @movies = @genre.movie.page(params[:page]).star_count
+      @movies = @genre.movie.page(params[:page]).star_count.per(8)
     end
     elsif params[:horror_count]
-      @movies = Movie.page(params[:page]).horror_count
+      @movies = Movie.page(params[:page]).horror_count.per(8)
       @genres = Genre.all
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
-      @movies = @genre.movie.page(params[:page]).horror_count
+      @movies = @genre.movie.page(params[:page]).horror_count.per(8)
     end
     else
-      @movies = Movie.page(params[:page]).order(created_at: :desc)
+      @movies = Movie.page(params[:page]).order(created_at: :desc).per(8)
       @genres = Genre.all
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
-      @movies = @genre.movie.page(params[:page]).order(created_at: :desc)
+      @movies = @genre.movie.page(params[:page]).order(created_at: :desc).per(8)
     end
     end
   end

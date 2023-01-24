@@ -10,10 +10,10 @@
   <div class="row">
     <div class="col-md-12">
       <h4><strong><i class="fas fa-ghost"></i><%= @genre.name %>映画</strong><i class="fas fa-ghost"></i></h4>
-        <%= link_to '投稿が新しい順', public_movies_path(genre_id: @genre.id, latest: "true") %>
-        |<%= link_to '投稿が古い順', public_movies_path(genre_id: @genre.id,old: "true") %>
-        |<%= link_to '面白さの評価が高い順', public_movies_path(genre_id: @genre.id,star_count: "true") %>
-        |<%= link_to '怖さの評価が高い順', public_movies_path(genre_id: @genre.id,horror_count: "true") %>
+        <i class="fas fa-arrow-alt-circle-up"></i><%= link_to '投稿が新しい順', public_movies_path(genre_id: @genre.id, latest: "true") %>
+        /<i class="fas fa-arrow-alt-circle-down"></i><%= link_to '投稿が古い順', public_movies_path(genre_id: @genre.id,old: "true") %>
+        /<i class="fas fa-smile-beam"></i><%= link_to '面白さの評価が高い順', public_movies_path(genre_id: @genre.id,star_count: "true") %>
+        /<i class="fas fa-tired"></i><%= link_to '怖さの評価が高い順', public_movies_path(genre_id: @genre.id,horror_count: "true") %>
         <table class="table table-hover table-inverse">
         <tr>
           <th>タイトル</th>
