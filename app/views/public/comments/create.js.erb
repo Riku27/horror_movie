@@ -1,3 +1,3 @@
-$("#comments-area").html("<%= j(render partial: 'public/comments/index', locals: {movie: @movie}) %>");
+$("#comments-area").html("<%= j(render partial: 'public/comments/index', locals: {movie: @movie, comments: @comments}) %>");
 
 $("textarea").val('');

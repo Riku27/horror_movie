@@ -5,6 +5,7 @@ class Public::CommentsController < ApplicationController
     comment = current_user.comments.new(comment_params)
     comment.movie_id = @movie.id
     if comment.save
+       @comments = @movie.comments.page(params[:page])
        render :create
     else
       # @movie = Movie.find(params[:movie_id])
