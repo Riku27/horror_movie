@@ -14,4 +14,18 @@ class Movie < ApplicationRecord
   scope :old, -> {order(created_at: :asc)}
   scope :star_count, -> {order(rate: :desc)}
   scope :horror_count, -> {order(rate_horror: :desc)}
+  
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @movie = Movie.where("title LIKE?","#{word}")
+    elsif search == "forward_match"
+      @movie = Movie.where("title LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @movie = Movie.where("title LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @movie = Movie.where("title LIKE?","%#{word}%")
+    else
+      @movie = Movie.all
+    end
+  end
 end
