@@ -68,7 +68,7 @@ before_action :authenticate_user!
 
   def destroy
     @movie = Movie.find(params[:id])
-    @movie.delete
+    @movie.destroy
     redirect_to '/public/my_page'
   end
 
@@ -78,7 +78,7 @@ before_action :authenticate_user!
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :year, :director, :watch, :rate, :rate_horror, :genre_id)
+    params.require(:movie).permit(:title, :year, :director, :watch, :rate, :rate_horror, :genre_id, tag_ids: [])
   end
 
   #def is_matching_login_user

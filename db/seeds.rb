@@ -9,3 +9,8 @@ Admin.create!(
    email: 'movie@gmail.com',
    password: 'horrormovie'
 )
+
+Tag.create([
+    { name: '洋画' },
+    { name: '邦画' },
+])

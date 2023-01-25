@@ -44,6 +44,13 @@
             <td>怖さ</td>
             <td><%= @movie.rate_horror %></td>
           <tr>
+          <tr>
+            <td>タグ</td>
+            <td><% @movie.tags.each do |tag| %>
+                <%= tag.name %>
+                <% end %>
+            </td>
+          </tr>
             <td>鑑賞日</td>
             <td><%= @movie.year %></td>
           </tr>
