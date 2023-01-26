@@ -8,7 +8,7 @@ class Admin::MoviesController < ApplicationController
 
   def destroy
     @movie = Movie.find(params[:id])
-    @movie.delete
+    @movie.destroy
     redirect_to admin_users_path
   end
 end
