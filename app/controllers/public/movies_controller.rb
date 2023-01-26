@@ -2,41 +2,31 @@ class Public::MoviesController < ApplicationController
 before_action :authenticate_user!
 
   def index
-    if params[:latest]
-      @movies = Movie.page(params[:page]).latest.per(8)
-      @genres = Genre.all
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
-      @movies = @genre.movie.page(params[:page]).latest.per(8)
-    end
-    elsif params[:old]
-      @movies = Movie.page(params[:page]).old.per(8)
-      @genres = Genre.all
-    if params[:genre_id].present?
-      @genre = Genre.find(params[:genre_id])
-      @movies = @genre.movie.page(params[:page]).old.per(8)
-    end
-    elsif params[:star_count]
-      @movies = Movie.page(params[:page]).star_count.per(8)
-      @genres = Genre.all
-    if params[:genre_id].present?
-      @genre = Genre.find(params[:genre_id])
-      @movies = @genre.movie.page(params[:page]).star_count.per(8)
-    end
-    elsif params[:horror_count]
-      @movies = Movie.page(params[:page]).horror_count.per(8)
-      @genres = Genre.all
-    if params[:genre_id].present?
-      @genre = Genre.find(params[:genre_id])
-      @movies = @genre.movie.page(params[:page]).horror_count.per(8)
-    end
+      session[:genre_id] = params[:genre_id]
+    elsif session[:genre_id].present?
+      @genre = Genre.find(session[:genre_id])
     else
-      @movies = Movie.page(params[:page]).order(created_at: :desc).per(8)
-      @genres = Genre.all
-    if params[:genre_id].present?
-      @genre = Genre.find(params[:genre_id])
-      @movies = @genre.movie.page(params[:page]).order(created_at: :desc).per(8)
+      @genre = Genre.first
     end
+
+    if params[:tag_id].present?
+      @movies = Movie.joins(:movie_tags).where(genre_id: @genre.id).where("movie_tags.tag_id = ?", params[:tag_id])
+    else
+      @movies = Movie.where(genre_id: @genre.id)
+    end
+    
+    if params[:latest]
+      @movies = @movies.page(params[:page]).latest.per(8)
+    elsif params[:old]
+      @movies = @movies.page(params[:page]).old.per(8)
+    elsif params[:star_count]
+      @movies = @movies.page(params[:page]).star_count.per(8)
+    elsif params[:horror_count]
+      @movies = @movies.page(params[:page]).horror_count.per(8)
+    else
+      @movies = @movies.page(params[:page]).order(created_at: :desc).per(8)
     end
   end
 
