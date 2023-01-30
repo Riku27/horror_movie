@@ -19,9 +19,11 @@
       　      <tr>
            　   <td><%= @user.email %></th>
              </tr>
+             <% unless current_user.email == "guest@example.com" %>
              <tr>
                <td><%= link_to "編集する", public_information_edit_path, class: "btn btn-success" %></td>
              </tr>
+             <% end %>
              <tr>
                <td><%= link_to "映画新規投稿", new_public_movie_path, class: "btn btn-info" %></td>
              </tr>

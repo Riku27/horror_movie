@@ -14,10 +14,14 @@ Rails.application.routes.draw do
     registrations: 'public/registrations'
   }
 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+
   root :to => "public/homes#top"
   get '/admin' => 'admin/homes#top', as: 'admin'
   get '/about' => 'public/homes#about', as: 'about'
-
+  
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
     resources :movies, only: [:index, :destroy]
